@@ -1,71 +1,126 @@
-Exemplo de uso Hibernate
-=========
+#Play - Testes
 
-O Hibernate é um framework para o mapeamento objeto-relacional escrito na linguagem Java. Este framework facilita o mapeamento dos atributos entre uma base tradicional de dados relacionais e o modelo objeto de uma aplicação, sem uma única escrita SQL por parte do desenvolvedor.
+######Playframework version 2.2.3
+---
 
-> Instalação
+>Sua aplicação Play pode ser testada em três níveis básicos:
 
-Detalhes sobre a instalação podem ser vistos [aqui] [1]:
+  - UNIDADE
+  - FUNCIONAL
+  - INTERFACE / BROWSER
+  
+>Utilização
 
+* todas as suas classes de teste devem estar na pasta 'test' gerada pelo play
 
-> Utilização
-
-- Suas classes à serem persistidas devem conter um @Entity
-- todos os atributos private devem possuir get e set
-- a classe deve possuir um construtor vazio
-- preencher a classe adequadamente com anotações @...
-- exemplo de uma Entidade [aqui] [2]
-
-##Relacionamentos
-
-#### OneToOne - Relação de Um para Um
-
-           
-           
-```sh 
-@Entity
-public class Pessoa {
-    @OneToOne(mappedBy="pessoa", cascade=CascadeType.ALL)
-    private Endereco endereco; // uma pessoa tem apenas um endereço
-    ...
-} 
-@Entity
-public class Endereco {
-    @OneToOne
-    private Pessoa pessoa;
-    ...
-}
-```
-
-#### OneToMany
+* na raiz da sua aplicação play digite o comando
 ```sh
-@Entity
-public class Aluno {
-    @OneToMany(mappedBy = "aluno")  
-    List<Livro> livros;  // um aluno tem vários livros, e um livro só pode pertencer a um aluno
-    ...
-}
-@Entity
-public class Livro {
-    @ManyToOne  
-    @JoinColumn(name = "aluno_id")  //livro será o dono da relação, então na tabela Livro terá a coluna aluno_id
-    Aluno aluno;
+$>play test
+//ou então para executar determinado teste.
+$>play "test-only <sua classe de testes ou seu namespace>"
+```
+```sh
+// rodar a classe de testes IndexViewTest do pacote funcional
+$>play "test-only funcional.IndexViewTest"
+// rodar todas as classes de teste do pacote funcional 
+$>play "test-only funcional.*"
+``` 
+
+## Testes de Unidade
+
+> A Maneira padrão de testar sua apicação, com a ajuda do [JUnit]
+
+Exemplo:
+```sh
+// Sua unidade a ser testada, geralmente algum Model 
+public class UnidadeTest {
+    import org.junit.*;
+    import play.mvc.*;
+    import play.test.*;
+    import play.libs.F.*;
+    import static play.test.Helpers.*;
+    import static org.fest.assertions.Assertions.*;
+    
+    // é também uma boa prática guiar seus testes pelo comportamento 
+    // da entidade
+    @Test 
+    public void comportamentoDaUnidadeTest() {
+        int a = 1 + 1;
+        assertThat(a).isEqualTo(2);
+        // usando asserts para verificação
+    }
     ...
 }
 ```
 
-#### ManyToMany 
-- exemplo [aqui] [3]
+##Testes Funcionais
 
-Duvidas
-=========
+> Testa o comportamento externo do software
+
+Nesse tipo de teste são testados(as):
+* Template (View)
+
+```sh
+@Test
+public void indexTemplate() {
+	String title = "Your new application is ready.";
+	// guarda o resultado da renderização do index.scala.html 
+	// passado como parametro 'title'
+    Content html = index.render(title);
+    //verifica se o html contém a determimnada string
+    assertThat(contentAsString(html)).contains(title);
+}
+``` 
+ 
+-[exemplo completo][1]
+* Controllers
+
+```sh
+@Test
+public void callIndex() {
+    // guarda o resultado da chamada ao metodo index() do controller Application
+    Result result = callAction(controllers.routes.ref.Application.index());
+    // verifica se n deu nenhum falha
+    assertThat(status(result)).isEqualTo(OK);
+    // verifica se o Result recebido contém realmente a String q deveria
+    assertThat(contentAsString(result)).contains("hello world");
+}
+```
+
+-[exemplo completo][2]
+* Routes
+
+o arquivo de routes pode ser visto [aqui][routes]
+```sh
+// testa a route inicial, no caso "/"
+@Test
+public void rootRoute() {
+    // cria uma fakeApplication, para q possa simular a requisição
+	running(fakeApplication(), new Runnable() {
+		@Override
+		public void run() {
+		    // guarda o resultado da requisição à url "/"
+			Result result = Helpers.route(new FakeRequest(GET, "/"));
+			// testa se a resultado da requisição à url "/" não é nula
+			assertThat(result).isNotNull();
+		}
+	});
+}
+```
+-[exemplo completo][3]
+* Documentação do play sobre testes funcionais [aqui][TestesFuncionais]
+
+##Testes de Interface
+>Utiliza de testes automaticos, uma das principais ferramentas para esse tipo de teste é o [selenium]
+
+## Duvidas 
+
 Utilizem o Piazza!
 
-
-
-
-
-[1]:http://www.playframework.com/documentation/2.2.x/JavaJPA
-[2]:https://github.com/marcosvcp/si1-examples/blob/master/app/models/Autor.java
-[3]:https://github.com/marcosvcp/si1-examples/blob/master/app/models/Autor.java#L35
-
+[routes]:https://github.com/ClaudivanFilho/PlayTestes/blob/master/conf/routes
+[selenium]:http://docs.seleniumhq.org/
+[1]:#
+[2]:#
+[3]:#
+[JUnit]:http://www.junit.org/
+[TestesFuncionais]:http://www.playframework.com/documentation/2.2.x/JavaFunctionalTest
