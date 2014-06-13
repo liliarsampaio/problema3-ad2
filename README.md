@@ -52,7 +52,7 @@ public class UnidadeTest {
     ...
 }
 ```
-
+-[exemplo completo][4]
 ##Testes Funcionais
 
 > Testa o comportamento externo do software
@@ -76,14 +76,18 @@ public void indexTemplate() {
 * Controllers
 
 ```sh
+@Before
+public void setUp() throws Exception {
+    start(fakeApplication(inMemoryDatabase()));
+}
 @Test
-public void callIndex() {
-    // guarda o resultado da chamada ao metodo index() do controller Application
-    Result result = callAction(controllers.routes.ref.Application.index());
-    // verifica se n deu nenhum falha
-    assertThat(status(result)).isEqualTo(OK);
-    // verifica se o Result recebido contém realmente a String q deveria
-    assertThat(contentAsString(result)).contains("hello world");
+public void callBooks() {
+    // guarda o resultado da chamada ao método books() do controller Application
+    Result result = callAction(controllers.routes.ref.Application.books(),
+		fakeRequest());
+    assertThat(status(result)).isEqualTo(Http.Status.OK);
+    assertThat(charset(result)).isEqualTo("utf-8");
+    assertThat(contentAsString(result)).contains("0 livro(s)");
 }
 ```
 
@@ -119,8 +123,9 @@ Utilizem o Piazza!
 
 [routes]:https://github.com/ClaudivanFilho/PlayTestes/blob/master/conf/routes
 [selenium]:http://docs.seleniumhq.org/
-[1]:#
-[2]:#
-[3]:#
+[1]:https://github.com/ClaudivanFilho/PlayTestes/blob/master/test/funcional/IndexViewTest.java
+[2]:https://github.com/ClaudivanFilho/PlayTestes/blob/master/test/funcional/ApplicationControllerTest.java
+[3]:https://github.com/ClaudivanFilho/PlayTestes/blob/master/test/funcional/IndexRouteTest.java
+[4]:https://github.com/ClaudivanFilho/PlayTestes/blob/master/test/unidade/LivroTest.java
 [JUnit]:http://www.junit.org/
 [TestesFuncionais]:http://www.playframework.com/documentation/2.2.x/JavaFunctionalTest
