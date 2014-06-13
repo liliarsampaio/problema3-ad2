@@ -96,19 +96,19 @@ public void callBooks() {
 
 o arquivo de routes pode ser visto [aqui][routes]
 ```sh
+@Before
+public void setUp() throws Exception {
+    // cria uma fakeApplication, para q possa simular a requisição
+    start(fakeApplication());
+}
+
 // testa a route inicial, no caso "/"
 @Test
 public void rootRoute() {
-    // cria uma fakeApplication, para q possa simular a requisição
-	running(fakeApplication(), new Runnable() {
-		@Override
-		public void run() {
-		    // guarda o resultado da requisição à url "/"
-			Result result = Helpers.route(new FakeRequest(GET, "/"));
-			// testa se a resultado da requisição à url "/" não é nula
-			assertThat(result).isNotNull();
-		}
-	});
+    // guarda o resultado da requisição à url "/"
+    Result result = Helpers.route(new FakeRequest(GET, "/"));
+    // testa se a resultado da requisição à url "/" não é nula
+    assertThat(result).isNotNull();
 }
 ```
 -[exemplo completo][3]
