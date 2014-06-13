@@ -1,69 +1,99 @@
 package funcional;
 
-
-import org.junit.Test;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import play.libs.F;
-import play.libs.WS;
-import play.mvc.Result;
-import play.test.TestBrowser;
-
 import static org.fest.assertions.Assertions.assertThat;
-import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.callAction;
 import static play.test.Helpers.charset;
 import static play.test.Helpers.contentAsString;
-import static play.test.Helpers.contentType;
 import static play.test.Helpers.fakeApplication;
-import static play.test.Helpers.running;
+import static play.test.Helpers.fakeRequest;
+import static play.test.Helpers.inMemoryDatabase;
+import static play.test.Helpers.redirectLocation;
 import static play.test.Helpers.status;
-import static play.test.Helpers.testServer;
 
-public class ApplicationControllerTest {
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-    @Test
-    public void callIndex() {
-        Result result = callAction(controllers.routes.ref.Application.index());
-        assertThat(status(result)).isEqualTo(OK);
-        assertThat(contentType(result)).isEqualTo("text/html");
-        assertThat(charset(result)).isEqualTo("utf-8");
-        
-        //assertThat(contentAsString(result)).contains("hello world");
-        // TODO 
-    }
+import models.Livro;
+import models.dao.GenericDAO;
+import models.dao.GenericDAOImpl;
 
-    @Test
-    public void testIndexWithFakeApp() {
-        running(fakeApplication(), new Runnable() {
-            @Override
-            public void run() {
-                // // TODO
-            }
-        });
-    }
+import org.junit.Before;
+import org.junit.Test;
 
-    @Test
-    public void testIndexWithTestServerRunnable() {
-        running(testServer(3333), new Runnable() {
-            @Override
-            public void run() {
-                assertThat(
-                		WS.url("http://localhost:3333").get().get(1000L).getStatus()
-                ).isEqualTo(OK);
-            }
-        });
-    }
+import play.db.jpa.JPA;
+import play.libs.F.Callback0;
+import play.mvc.Http;
+import play.mvc.Result;
+import play.test.WithApplication;
 
-    @Test
-    public void runInBrowser() {
-        running(testServer(3333), HtmlUnitDriver.class, new F.Callback() {
+public class ApplicationControllerTest extends WithApplication {
+
+	Result result;
+	
+	@Before
+	public void setUp() throws Exception {
+		start(fakeApplication(inMemoryDatabase()));
+	}
+
+	@Test
+	public void callIndex() {
+		// realiza a chamada ao método index() do Application
+		result = callAction(controllers.routes.ref.Application.index(),
+				fakeRequest());
+		// ao chamar o metodo index do Application, ele redireciona para '/books'
+		assertThat(status(result)).isEqualTo(Http.Status.SEE_OTHER);
+		assertThat(redirectLocation(result)).isEqualTo("/books");
+	}
+	
+	@Test
+	public void callBooks() {
+		// realiza a chamada ao método books() do Application
+		result = callAction(controllers.routes.ref.Application.books(),
+				fakeRequest());
+		// ao chamar o método index do Application, ele retora o html
+		// correspondente.
+		assertThat(status(result)).isEqualTo(Http.Status.OK);
+		assertThat(charset(result)).isEqualTo("utf-8");
+		assertThat(contentAsString(result)).contains("0 livro(s)");
+	}
+	
+	@Test
+	public void callNewBook() {
+		// Mapa com os dados do formulario para criação do livro
+		Map<String, String> formData = new HashMap<String, String>();
+		formData.put("nome", "Calculo I");
+		
+		// realiza a chamada ao método newBook() do Application com o
+		// formulário.
+		result = callAction(
+				controllers.routes.ref.Application.newBook(), fakeRequest()
+						.withFormUrlEncodedBody(formData));
+		
+		// ao chamar o método newBook do Application, ele adiciona o livro e
+		// redireciona para a url '/books'
+		assertThat(status(result)).isEqualTo(Http.Status.SEE_OTHER);
+		assertThat(redirectLocation(result)).isEqualTo("/books");
+
+		// testa se realmente adicionou o livro com nome "Calculo I" no banco de
+		// dados.
+		JPA.withTransaction(new Callback0() {
 			@Override
-			public void invoke(Object arg0) throws Throwable {
-				TestBrowser browser = (TestBrowser) arg0;
-				browser.goTo("http://localhost:3333");
-                //assertThat(browser.$("body").getTexts().get(0)).isEqualTo("hello world");
-				// TODO
+			public void invoke() throws Throwable {
+				GenericDAO dao = new GenericDAOImpl();
+				List<Livro> result = dao.findAllByClassName("Livro");
+				assertThat(result.size()).isEqualTo(1);
+				List<Livro> result2 = dao.findByAttributeName("Livro", 
+						"nome", "Calculo I");	
+				assertThat(result2.size()).isEqualTo(1);
+				
 			}
-        });
-    }
+		});
+		
+		// verifica o html gerado pela url '/books' que é chamada dentro do newBook
+		result = callAction(controllers.routes.ref.Application.books(),
+				fakeRequest());
+		assertThat(status(result)).isEqualTo(Http.Status.OK);
+		assertThat(contentAsString(result)).contains("1 livro(s)");
+	}
 }

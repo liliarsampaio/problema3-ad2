@@ -21,7 +21,7 @@ public class IndexViewTest {
 	static Form<Livro> bookForm = Form.form(Livro.class);
 	List<Livro> livros;
 	Livro livro1;
-	
+
 	@Before
 	public void iniciaVariaveis() {
 		livros = new ArrayList<Livro>();
@@ -29,18 +29,19 @@ public class IndexViewTest {
 		livro1.setNome("Calculo I");
 		livro1.setId(1L);
 	}
-	
+
 	// Testa o template index.scala.html
 	@Test
-    public void indexTemplate() {
+	public void indexTemplate() {
 		livros.add(livro1);
-		
+
 		// guarda o html resultante da renderização do index.scala.html
 		// com a lista de livros e o formulario
-        Content html = index.render(livros, bookForm);
-        assertThat(contentType(html)).isEqualTo("text/html");
-        //verifica se o html contém a determimnada string, no caso o nome do livro
-        assertThat(contentAsString(html)).contains(livro1.getNome());
-    }
-	
+		Content html = index.render(livros, bookForm);
+		assertThat(contentType(html)).isEqualTo("text/html");
+		// verifica se o html contém a determimnada string, no caso o nome do
+		// livro
+		assertThat(contentAsString(html)).contains(livro1.getNome());
+	}
+
 }
