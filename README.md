@@ -82,7 +82,7 @@ public void setUp() throws Exception {
 }
 @Test
 public void callBooks() {
-    // guarda o resultado da chamada ao metodo index() do controller Application
+    // guarda o resultado da chamada ao método books() do controller Application
     Result result = callAction(controllers.routes.ref.Application.books(),
 		fakeRequest());
     assertThat(status(result)).isEqualTo(Http.Status.OK);
