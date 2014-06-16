@@ -1,24 +1,16 @@
 package funcional;
 
-import org.junit.Before;
+import static org.fest.assertions.Assertions.assertThat;
+import static play.test.Helpers.GET;
+
 import org.junit.Test;
 
 import play.mvc.Result;
 import play.test.FakeRequest;
 import play.test.Helpers;
+import base.AbstractTest;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static play.test.Helpers.GET;
-import static play.test.Helpers.fakeApplication;
-import static play.test.Helpers.inMemoryDatabase;
-import static play.test.Helpers.start;
-
-public class IndexRouteTest {
-
-	@Before
-	public void setUp() throws Exception {
-		start(fakeApplication(inMemoryDatabase()));
-	}
+public class IndexRouteTest extends AbstractTest{
 
 	@Test
 	public void rootRoute() {
