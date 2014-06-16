@@ -30,10 +30,14 @@ $>play "test-only funcional.*"
 
 > A Maneira padrão de testar sua apicação, com a ajuda do [JUnit]
 
+> Dicas
+* Conter um 'extends AbstractTest' para testar com banco de dados
+* [AbstractTest.java]
+
 Exemplo:
 ```sh
 // Sua unidade a ser testada, geralmente algum Model 
-public class UnidadeTest {
+public class UnidadeTest extends AbstractTest{
     import org.junit.*;
     import play.mvc.*;
     import play.test.*;
@@ -57,6 +61,10 @@ public class UnidadeTest {
 
 > Testa o comportamento externo do software
 
+> Dicas
+* Conter um 'extends AbstractTest' para testar com BD e outras transações
+* [AbstractTest.java]
+
 Nesse tipo de teste são testados(as):
 * Template (View)
 
@@ -76,10 +84,6 @@ public void indexTemplate() {
 * Controllers
 
 ```sh
-@Before
-public void setUp() throws Exception {
-    start(fakeApplication(inMemoryDatabase()));
-}
 @Test
 public void callBooks() {
     // guarda o resultado da chamada ao método books() do controller Application
@@ -96,12 +100,6 @@ public void callBooks() {
 
 o arquivo de routes pode ser visto [aqui][routes]
 ```sh
-@Before
-public void setUp() throws Exception {
-    // cria uma fakeApplication, para q possa simular a requisição
-    start(fakeApplication());
-}
-
 // testa a route inicial, no caso "/"
 @Test
 public void rootRoute() {
@@ -121,6 +119,7 @@ public void rootRoute() {
 
 Utilizem o Piazza!
 
+[AbstractTest.java]:https://github.com/ClaudivanFilho/PlayTestes/blob/master/test/base/AbstractTest.java
 [routes]:https://github.com/ClaudivanFilho/PlayTestes/blob/master/conf/routes
 [selenium]:http://docs.seleniumhq.org/
 [1]:https://github.com/ClaudivanFilho/PlayTestes/blob/master/test/funcional/IndexViewTest.java
