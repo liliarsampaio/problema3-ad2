@@ -4,9 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.callAction;
 import static play.test.Helpers.charset;
 import static play.test.Helpers.contentAsString;
-import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.fakeRequest;
-import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.redirectLocation;
 import static play.test.Helpers.status;
 
@@ -14,28 +12,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+
 import models.Livro;
 import models.dao.GenericDAO;
 import models.dao.GenericDAOImpl;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import play.db.jpa.JPA;
-import play.libs.F.Callback0;
 import play.mvc.Http;
 import play.mvc.Result;
-import play.test.WithApplication;
+import base.AbstractTest;
 
-public class ApplicationControllerTest extends WithApplication {
+public class ApplicationControllerTest extends AbstractTest {
 
 	Result result;
+	EntityManager em;
 	
-	@Before
-	public void setUp() throws Exception {
-		start(fakeApplication(inMemoryDatabase()));
-	}
-
 	@Test
 	public void callIndex() {
 		// realiza a chamada ao método index() do Application
@@ -77,18 +70,12 @@ public class ApplicationControllerTest extends WithApplication {
 
 		// testa se realmente adicionou o livro com nome "Calculo I" no banco de
 		// dados.
-		JPA.withTransaction(new Callback0() {
-			@Override
-			public void invoke() throws Throwable {
-				GenericDAO dao = new GenericDAOImpl();
-				List<Livro> result = dao.findAllByClassName("Livro");
-				assertThat(result.size()).isEqualTo(1);
-				List<Livro> result2 = dao.findByAttributeName("Livro", 
-						"nome", "Calculo I");	
-				assertThat(result2.size()).isEqualTo(1);
-				
-			}
-		});
+		GenericDAO dao = new GenericDAOImpl();
+		List<Livro> livros = dao.findAllByClassName("Livro");
+		assertThat(livros.size()).isEqualTo(1);
+		List<Livro> result2 = dao.findByAttributeName("Livro", 
+				"nome", "Calculo I");	
+		assertThat(result2.size()).isEqualTo(1);
 		
 		// verifica o html gerado pela url '/books' que é chamada dentro do newBook
 		result = callAction(controllers.routes.ref.Application.books(),
