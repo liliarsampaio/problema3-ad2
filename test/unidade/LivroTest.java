@@ -30,7 +30,7 @@ public class LivroTest extends AbstractTest {
 		
 		livros = dao.findAllByClassName("Livro"); //consulta o bd
 		assertThat(livros.size()).isEqualTo(1);
-		assertThat(livros.get(0).getNome()).isEqualTo("Biblia Sagra");
+		assertThat(livros.get(0).getNome()).isEqualTo("Biblia Sagrada");
 	}
 	
 	@Test
