@@ -3,5 +3,27 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET           /                    controllers.Application.index
 
+# Song
+POST          /song                controllers.Application.newSong
+GET           /song                controllers.Application.songs
+GET           /song/:id            controllers.Application.song(id: Long)
+PUT           /song/:id            controllers.Application.setSong(id: Long)
+DELETE        /song/:id            controllers.Application.deleteSong(id: Long)
+
+# Artist
+POST          /artist              controllers.Application.newArtist
+GET           /artist              controllers.Application.artists
+GET           /artist/:id          controllers.Application.artist(id: Long)
+PUT           /artist/:id          controllers.Application.setArtist(id: Long)
+DELETE        /artist/:id            controllers.Application.deleteArtist(id: Long)
+
+# Tag
+POST          /tag                 controllers.Application.newTag
+GET           /tag                 controllers.Application.tags
+GET           /tag/:id             controllers.Application.tag(id: Long)
+PUT           /tag/:id             controllers.Application.setTag(id: Long)
+DELETE        /tag/:id            controllers.Application.deleteTag(id: Long)
+
+GET           /assets/*file        controllers.Assets.at(path="/public", file)
