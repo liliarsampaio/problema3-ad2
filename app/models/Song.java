@@ -21,7 +21,7 @@ public class Song extends Model<Long, Song> {
     private String echoNextId;
     private String release;
     private String musicBrainzId;
-    private int duration;
+    private float duration;
     private int year;
     private float hotness;
 
@@ -78,11 +78,11 @@ public class Song extends Model<Long, Song> {
         this.musicBrainzId = musicBrainzId;
     }
 
-    public int getDuration() {
+    public float getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(float duration) {
         this.duration = duration;
     }
 
@@ -101,5 +101,4 @@ public class Song extends Model<Long, Song> {
     public void setHotness(float hotness) {
         this.hotness = hotness;
     }
-
 }

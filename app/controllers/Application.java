@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
+import dao.ArtistDao;
 import dao.GenericDao;
 import dao.Model;
 import models.Artist;
@@ -14,14 +15,14 @@ import play.mvc.Result;
 
 import javax.persistence.NoResultException;
 
-import static play.libs.Json.toJson;
 import static play.libs.Json.fromJson;
+import static play.libs.Json.toJson;
 import static play.mvc.BodyParser.Json;
 
 public class Application extends Controller {
 
     private static GenericDao<Long, Song> songDao = new GenericDao<>(Song.class);
-    private static GenericDao<Long, Artist> artistDao = new GenericDao<>(Artist.class);
+    private static ArtistDao artistDao = new ArtistDao();
     private static GenericDao<Long, Tag> tagDao = new GenericDao<>(Tag.class);
 
     public static Result index() {
@@ -51,7 +52,7 @@ public class Application extends Controller {
     }
 
     public static Result deleteSong(long id) {
-        return play.mvc.Results.TODO;
+        return removeFromId(id, songDao, "song");
     }
 
     @Transactional
@@ -61,7 +62,7 @@ public class Application extends Controller {
 
     @Transactional(readOnly = true)
     public static Result artists() {
-        return ok(toJson(artistDao.findAll()));
+        return ok(toJson(artistDao.artists()));
     }
 
     @Transactional(readOnly = true)
@@ -77,13 +78,12 @@ public class Application extends Controller {
 
     @Transactional
     public static Result deleteArtist(long id) {
-        try{
-            artistDao.removeById(id);
-            artistDao.flush();
-        }catch(IllegalArgumentException e){
-            return notFound("There is artist with the id " + id);
-        }
-        return noContent();
+        return removeFromId(id, artistDao, "artist");
+    }
+
+    @Transactional
+    public static Result similars() {
+        return TODO;
     }
 
     @Transactional
@@ -107,8 +107,9 @@ public class Application extends Controller {
         return updateFromRequestBody(id, Tag.class, "tag");
     }
 
+    @Transactional
     public static Result deleteTag(long id) {
-        return play.mvc.Results.TODO;
+        return removeFromId(id, tagDao, "Tag");
     }
 
     private static <I, T> Result findById(GenericDao<I, T> dao, I id, String entityName) {
@@ -138,6 +139,16 @@ public class Application extends Controller {
             }
         }
         return ok("/" + entityName + "/" + jsonObject.getId());
+    }
+
+    private static <I, T extends Model<I, T>> Result removeFromId(I id, GenericDao<I, T> dao, String entityName) {
+        try {
+            dao.removeById(id);
+            dao.flush();
+        } catch (IllegalArgumentException e) {
+            return notFound("There is no " + entityName + " with the id " + id);
+        }
+        return noContent();
     }
 
     private static <I, T extends Model<I, T>> Result persistFromRequestBody(Class<T> EntityClass, String entityName) {

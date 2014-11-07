@@ -9,7 +9,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 import static javax.persistence.EnumType.STRING;
 
 @Entity(name = "Tag")
-//@JsonInclude(NON_DEFAULT)
+@JsonInclude(NON_DEFAULT)
 public class Tag extends Model<Long, Tag> {
 
     @Id
