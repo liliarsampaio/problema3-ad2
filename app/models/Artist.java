@@ -111,6 +111,7 @@ public class Artist extends Model<Long, Artist> {
     }
 
     public void setSimilars(List<Artist> similars) {
+        System.out.println("ENTREI NO SET ENTREI NO SET ENTREI NO SET");
         this.similars = similars;
     }
 

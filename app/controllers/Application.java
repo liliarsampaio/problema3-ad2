@@ -113,9 +113,10 @@ public class Application extends Controller {
     }
 
     private static <I, T> Result findById(GenericDao<I, T> dao, I id, String entityName) {
-        try {
+        Object a = dao.findById(id);
+        if (a != null) {
             return ok(toJson(dao.findById(id)));
-        } catch (NoResultException e) {
+        } else {
             return notFound("There is no " + entityName + " in data base with id: " + id);
         }
     }
@@ -167,5 +168,20 @@ public class Application extends Controller {
             }
         }
         return created("/" + entityName + "/" + jsonObject.getId());
+    }
+
+    @Transactional(readOnly = true)
+    public static Result songFromArtist(long id) {
+        return ok(toJson(artistDao.songs(id)));
+    }
+
+    @Transactional(readOnly = true)
+    public static Result tagFromArtist(long id) {
+        return ok(toJson(artistDao.tags(id)));
+    }
+
+    @Transactional(readOnly = true)
+    public static Result similarFromArtist(long id) {
+        return ok(toJson(artistDao.similars(id)));
     }
 }
