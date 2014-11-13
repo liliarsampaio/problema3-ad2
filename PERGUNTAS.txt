@@ -1,0 +1,6 @@
+- 1: Existe algum estilo musical predominante nos Estados Unidos?
+- 2: Existe transitividade na similaridade entre artistas?
+- 3: Dada a similaridade entre artistas, como podemos explicá-la a partir da disposição de seus respectivos genêros?
+- 4: Que região do mundo tem contribuido mais com a industria musical?
+- 5: Como o pop se comporta diante dos demais genêros musicais considerando suas similaridades? 
+
