@@ -13,8 +13,6 @@ import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 
-import javax.persistence.NoResultException;
-
 import static play.libs.Json.fromJson;
 import static play.libs.Json.toJson;
 import static play.mvc.BodyParser.Json;
@@ -83,7 +81,7 @@ public class Application extends Controller {
 
     @Transactional
     public static Result similars() {
-        return TODO;
+        return ok(toJson(artistDao.similars()));
     }
 
     @Transactional
@@ -182,6 +180,6 @@ public class Application extends Controller {
 
     @Transactional(readOnly = true)
     public static Result similarFromArtist(long id) {
-        return ok(toJson(artistDao.similars(id)));
+        return ok(toJson(artistDao.similarsFromArtist(id)));
     }
 }

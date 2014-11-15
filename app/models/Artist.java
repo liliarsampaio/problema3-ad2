@@ -1,7 +1,9 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dao.Model;
 
 import javax.persistence.*;
@@ -33,9 +35,10 @@ public class Artist extends Model<Long, Artist> {
     }
 
     @ManyToMany(cascade = ALL, fetch = LAZY)
-    @JoinTable(name = "SIMILARITY", joinColumns = @JoinColumn(name = "TARGET"),
+    @JoinTable(name = "Similarity", joinColumns = @JoinColumn(name = "TARGET"),
             inverseJoinColumns = @JoinColumn(name = "SIMILAR"))
-    @JsonIgnore
+    @JsonManagedReference("artist-similar")
+    @JsonBackReference("artist-similar")
     private List<Artist> similars;
 
     @ManyToMany(cascade = ALL, fetch = LAZY)
