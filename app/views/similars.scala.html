@@ -10,6 +10,15 @@
     <script>
         var artists = []
         var similaritys = []
+        var jsonGraph = {'links':artists, 'nodes':similaritys}
+
+        var getSimilatirys = function(){
+        $.getJSON('/similars', function (json){
+            for (var i = 0; i < json.length; i++) {
+                similaritys.push({'source' : json[i][0].id, 'target': json[i][1].id, 'value': 1});
+                }
+            });
+        }
 
         var getArtists = function(){
             $.getJSON('/artist', function (json){
@@ -17,16 +26,7 @@
             });
         }
 
-        var getSimilatirys = function(){
-            $.getJSON('/similars', function (json){
-                for (var i = 0; i < json.length; i++) {
-                    similaritys.push({'source' : json[i][0].id, 'target': json[i][1].id, 'value': 1});
-                }
-
-            });
-
-            var finalJson = {'nomes': artists, 'links': similaritys}
-        }
+        //To fill the jsonGraph call the function getArtists and getSimilatirys
 
     </script>
 
