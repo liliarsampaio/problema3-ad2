@@ -2,8 +2,9 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
+# Web pages
 GET           /                          controllers.Application.index
+GET           /similarsShow              controllers.Application.similarsShow
 
 # Song
 POST          /song                      controllers.Application.newSong
@@ -11,7 +12,6 @@ GET           /song                      controllers.Application.songs
 GET           /song/:id                  controllers.Application.song(id: Long)
 PUT           /song/:id                  controllers.Application.setSong(id: Long)
 DELETE        /song/:id                  controllers.Application.deleteSong(id: Long)
-
 
 #Similars
 GET           /similars                  controllers.Application.similars

@@ -4,13 +4,7 @@
     <list default="true" id="cf9ba818-9316-4a60-9295-2d6235a3c838" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/db.h2.db" afterPath="$PROJECT_DIR$/database/db.h2.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Application.java" afterPath="$PROJECT_DIR$/app/controllers/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Artist.java" afterPath="$PROJECT_DIR$/app/models/Artist.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/dao/ArtistDao.java" afterPath="$PROJECT_DIR$/app/dao/ArtistDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/db.trace.db" afterPath="$PROJECT_DIR$/database/db.trace.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/routes" afterPath="$PROJECT_DIR$/conf/routes" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="testPA.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,9 +30,18 @@
       <file leaf-file-name="Application.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="246" max-vertical-offset="2025">
-              <caret line="182" column="53" selection-start-line="182" selection-start-column="35" selection-end-line="182" selection-end-column="53" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1365">
+              <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
+              <folding>
+                <element signature="e#852#853#0" expanded="true" />
+                <element signature="e#893#894#0" expanded="true" />
+                <element signature="e#936#937#0" expanded="true" />
+                <element signature="e#980#981#0" expanded="true" />
+                <element signature="method#findById#0;class#Application#0" expanded="false" />
+                <element signature="method#updateFromRequestBody#0;class#Application#0" expanded="false" />
+                <element signature="method#removeFromId#0;class#Application#0" expanded="false" />
+                <element signature="method#persistFromRequestBody#0;class#Application#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -46,21 +49,31 @@
       <file leaf-file-name="routes" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/conf/routes">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="630">
-              <caret line="16" column="71" selection-start-line="16" selection-start-column="71" selection-end-line="16" selection-end-column="71" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+              <caret line="16" column="23" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArtistDao.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ArtistDao.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/dao/ArtistDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3288364" vertical-offset="0" max-vertical-offset="1779">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
               <caret line="43" column="34" selection-start-line="43" selection-start-column="34" selection-end-line="43" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="similars.scala.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/similars.scala.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.22907239" vertical-offset="0" max-vertical-offset="1768">
+              <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,11 +133,13 @@
         <option value="$PROJECT_DIR$/app/models/Song.java" />
         <option value="$PROJECT_DIR$/app/models/Tag.java" />
         <option value="$PROJECT_DIR$/app/controllers/LoadDataCtrl.java" />
-        <option value="$PROJECT_DIR$/conf/routes" />
-        <option value="$PROJECT_DIR$/app/controllers/Application.java" />
         <option value="$PROJECT_DIR$/app/models/Artist.java" />
         <option value="$PROJECT_DIR$/app/models/Similarity.java" />
         <option value="$PROJECT_DIR$/app/dao/ArtistDao.java" />
+        <option value="$PROJECT_DIR$/app/views/similars.html" />
+        <option value="$PROJECT_DIR$/conf/routes" />
+        <option value="$PROJECT_DIR$/app/controllers/Application.java" />
+        <option value="$PROJECT_DIR$/app/views/similars.scala.html" />
       </list>
     </option>
   </component>
@@ -207,6 +222,10 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -223,6 +242,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testPA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="msdWeb" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -257,6 +290,7 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -593,12 +627,12 @@
       <workItem from="1415826956127" duration="5986000" />
       <workItem from="1415834839101" duration="4872000" />
       <workItem from="1416008142273" duration="5102000" />
-      <workItem from="1416014794105" duration="1699000" />
+      <workItem from="1416014794105" duration="2849000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85120000" />
+    <option name="totallyTimeSpent" value="86270000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1080" height="1920" extended-state="6" />
@@ -714,7 +748,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2490">
           <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="method#findById#0;class#Application#0" expanded="false" />
+            <element signature="method#updateFromRequestBody#0;class#Application#0" expanded="false" />
+            <element signature="method#removeFromId#0;class#Application#0" expanded="false" />
+            <element signature="method#persistFromRequestBody#0;class#Application#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -752,7 +795,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2490">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="33" />
-          <folding />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="method#findById#0;class#Application#0" expanded="false" />
+            <element signature="method#updateFromRequestBody#0;class#Application#0" expanded="false" />
+            <element signature="method#removeFromId#0;class#Application#0" expanded="false" />
+            <element signature="method#persistFromRequestBody#0;class#Application#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -774,7 +826,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1305">
           <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-          <folding />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="method#findById#0;class#Application#0" expanded="false" />
+            <element signature="method#updateFromRequestBody#0;class#Application#0" expanded="false" />
+            <element signature="method#removeFromId#0;class#Application#0" expanded="false" />
+            <element signature="method#persistFromRequestBody#0;class#Application#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -814,7 +875,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1335">
           <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-          <folding />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="method#findById#0;class#Application#0" expanded="false" />
+            <element signature="method#updateFromRequestBody#0;class#Application#0" expanded="false" />
+            <element signature="method#removeFromId#0;class#Application#0" expanded="false" />
+            <element signature="method#persistFromRequestBody#0;class#Application#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -868,7 +938,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1590">
           <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-          <folding />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="method#findById#0;class#Application#0" expanded="false" />
+            <element signature="method#updateFromRequestBody#0;class#Application#0" expanded="false" />
+            <element signature="method#removeFromId#0;class#Application#0" expanded="false" />
+            <element signature="method#persistFromRequestBody#0;class#Application#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -927,7 +1006,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="495">
           <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-          <folding />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="method#findById#0;class#Application#0" expanded="false" />
+            <element signature="method#updateFromRequestBody#0;class#Application#0" expanded="false" />
+            <element signature="method#removeFromId#0;class#Application#0" expanded="false" />
+            <element signature="method#persistFromRequestBody#0;class#Application#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -965,7 +1053,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1365">
           <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-          <folding />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="method#findById#0;class#Application#0" expanded="false" />
+            <element signature="method#updateFromRequestBody#0;class#Application#0" expanded="false" />
+            <element signature="method#removeFromId#0;class#Application#0" expanded="false" />
+            <element signature="method#persistFromRequestBody#0;class#Application#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1045,22 +1142,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf/routes">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
-          <caret line="16" column="71" selection-start-line="16" selection-start-column="71" selection-end-line="16" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="246" max-vertical-offset="2025">
-          <caret line="182" column="53" selection-start-line="182" selection-start-column="35" selection-end-line="182" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Artist.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1320">
@@ -1079,11 +1160,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/dao/ArtistDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3288364" vertical-offset="0" max-vertical-offset="1779">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
           <caret line="43" column="34" selection-start-line="43" selection-start-column="34" selection-end-line="43" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1365">
+          <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="method#findById#0;class#Application#0" expanded="false" />
+            <element signature="method#updateFromRequestBody#0;class#Application#0" expanded="false" />
+            <element signature="method#removeFromId#0;class#Application#0" expanded="false" />
+            <element signature="method#persistFromRequestBody#0;class#Application#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/routes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/similars.scala.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22907239" vertical-offset="0" max-vertical-offset="1768">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
