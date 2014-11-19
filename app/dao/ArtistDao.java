@@ -47,4 +47,10 @@ public class ArtistDao extends GenericDao<Long, Artist> {
         }
         return ret;
     }
+
+    @Override
+    public Artist findById(Long id){
+        return (Artist) GenericDao.createQuery(HQL_MINIFIED_ARTIST + " WHERE a.id=:id").
+                setParameter("id", id).getSingleResult();
+    }
 }

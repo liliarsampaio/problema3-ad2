@@ -15,6 +15,11 @@ import play.mvc.Result;
 import views.html.index;
 import views.html.similars;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import static play.libs.Json.fromJson;
 import static play.libs.Json.toJson;
 import static play.mvc.BodyParser.Json;

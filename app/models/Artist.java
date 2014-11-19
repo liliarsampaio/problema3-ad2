@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dao.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +30,10 @@ public class Artist extends Model<Long, Artist> {
 
     private String msdId;
     private String name;
+    @Column(name = "lat", nullable = true)
+    private Float lat;
+    @Column(name = "long", nullable = true)
+    private Float long_;
 
     public String getMsdId() {
         return msdId;
@@ -114,12 +119,28 @@ public class Artist extends Model<Long, Artist> {
     }
 
     public void setSimilars(List<Artist> similars) {
-        System.out.println("ENTREI NO SET ENTREI NO SET ENTREI NO SET");
         this.similars = similars;
     }
 
     public void addSimilar(Artist artist) {
         this.similars.add(artist);
+    }
+
+
+    public Float getLong_() {
+        return long_;
+    }
+
+    public void setLong_(Float long_) {
+        this.long_ = long_;
+    }
+
+    public Float getLat() {
+        return lat;
+    }
+
+    public void setLat(Float lat) {
+        this.lat = lat;
     }
 
     public String toString(){
