@@ -10,7 +10,8 @@ import java.util.Objects;
 
 public class ArtistDao extends GenericDao<Long, Artist> {
 
-    private final String HQL_MINIFIED_ARTIST = "SELECT new Artist(a.id, a.name, a.msdId) from Artist a";
+    private final String HQL_MINIFIED_ARTIST = "SELECT new Artist(a.id, a.name, a.msdId, a.lat, a.long_) " +
+            "FROM Artist a";
 
     public ArtistDao() {
         super(Artist.class);

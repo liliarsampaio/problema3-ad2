@@ -69,6 +69,13 @@ public class Artist extends Model<Long, Artist> {
         this.msdId = msdId;
     }
 
+    public Artist(Long id, String name, String msdId, Float lat, Float long_){
+        this(id, name, msdId);
+        this.lat = lat;
+        this.long_ = long_;
+    }
+
+
     @Override
     public Long getId() {
         return id;
