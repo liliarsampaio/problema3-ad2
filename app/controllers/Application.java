@@ -12,8 +12,13 @@ import play.db.jpa.Transactional;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.index;
+import views.html.similars;
 
-import javax.persistence.NoResultException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 import static play.libs.Json.fromJson;
 import static play.libs.Json.toJson;
@@ -26,7 +31,11 @@ public class Application extends Controller {
     private static GenericDao<Long, Tag> tagDao = new GenericDao<>(Tag.class);
 
     public static Result index() {
-        return ok(views.html.index.render());
+        return ok(index.render());
+    }
+
+    public static Result similarsShow() {
+        return ok(similars.render());
     }
 
     @Transactional
@@ -83,7 +92,7 @@ public class Application extends Controller {
 
     @Transactional
     public static Result similars() {
-        return TODO;
+        return ok(toJson(artistDao.similars()));
     }
 
     @Transactional
@@ -182,6 +191,6 @@ public class Application extends Controller {
 
     @Transactional(readOnly = true)
     public static Result similarFromArtist(long id) {
-        return ok(toJson(artistDao.similars(id)));
+        return ok(toJson(artistDao.similarsFromArtist(id)));
     }
 }
