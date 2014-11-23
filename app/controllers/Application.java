@@ -14,6 +14,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
 import views.html.similars;
+import views.html.usaSongs;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,9 +27,9 @@ import static play.mvc.BodyParser.Json;
 
 public class Application extends Controller {
 
-    private static GenericDao<Long, Song> songDao = new GenericDao<>(Song.class);
+    private static GenericDao<Long, Song> songDao = new GenericDao<Long, Song>(Song.class);
     private static ArtistDao artistDao = new ArtistDao();
-    private static GenericDao<Long, Tag> tagDao = new GenericDao<>(Tag.class);
+    private static GenericDao<Long, Tag> tagDao = new GenericDao<Long, Tag>(Tag.class);
 
     public static Result index() {
         return ok(index.render());
@@ -37,7 +38,11 @@ public class Application extends Controller {
     public static Result similarsShow() {
         return ok(similars.render());
     }
-
+    
+    public static Result usaSongs() {
+        return ok(usaSongs.render());
+    }
+    
     @Transactional
     @BodyParser.Of(Json.class)
     public static Result newSong() {
@@ -94,7 +99,12 @@ public class Application extends Controller {
     public static Result similars() {
         return ok(toJson(artistDao.similars()));
     }
-
+    
+    @Transactional
+    public static Result latLongSongs() {
+        return ok(toJson(artistDao.latLongSongs()));
+    }
+    
     @Transactional
     public static Result newTag() {
         return persistFromRequestBody(Tag.class, "tag");
